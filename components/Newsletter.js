@@ -5,7 +5,7 @@ const Newsletter = () => {
       <p>Sign up for our newsletter to get the latest news and updates.</p>
       <form>
         <input type='email' placeholder='example@example.com' />
-        <button>Suscribe</button>
+        <button>Subscribe</button>
       </form>
     </div>
   );
