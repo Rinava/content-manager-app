@@ -34,11 +34,21 @@
         margin-left: 0.4em;
         border: none;
         border-radius: 5px;
-        background-color: rgb(17, 97, 126);
+        background-color: rgb(16, 163, 216);
         color: #fff;
         font-size: 1em;
         font-weight: bold;
     }
+
+    button:hover {
+        background-color: rgb(17, 97, 126);
+    }
+
+    button:active {
+        background-color: rgb(17, 97, 126);
+    }
+
+
 }
 
 .list {
@@ -53,7 +63,7 @@
     li:hover {
         color: rgb(17, 97, 126);
         font-weight: 600;
-        
+
     }
 
 }
