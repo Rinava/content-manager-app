@@ -5,17 +5,24 @@ import { useState, useEffect } from 'react';
 const defaultForm = {
   title: '',
   description: '',
-  url: '',
-  priority: '',
+  link: '',
+  priority: '1',
   timeToFinish: '00:20',
 };
 
 const ResourceCreate = () => {
   const [form, setForm] = useState( defaultForm );
 
-  const submitForm = () => {
-    alert(JSON.stringify(form));
+  const submitForm = (e) => {
+    e.preventDefault();
+    fetch("/api/resources", {
+      body: JSON.stringify(form),
+      headers: {"Content-Type": "application/json"},
+      method: "POST"
+    }).then(response=> console.log(response?.data)).catch(error=>alert("Error during the creation of the resource"));
   };
+  // TODO when the response is ok show a message and clear the form, when the response is not ok show an error message
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
@@ -25,6 +32,7 @@ const ResourceCreate = () => {
     console.log(form);
   }, [form]);
 
+  //TODO add image too
   return (
     <Layout>
       <h2 className={styles.title}>Create new Resource </h2>
@@ -64,7 +72,6 @@ const ResourceCreate = () => {
             type='text'
             name='link'
             placeholder='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-            required
             pattern='^(https?://)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$'
             value={form.link}
             onChange={handleChange}
@@ -80,14 +87,14 @@ const ResourceCreate = () => {
                 className={styles.select}
                 value={form.priority}
                 onChange={handleChange}>
-                <option value='1' className={styles.option}>
-                  1
+                <option value='1' className={styles.option} >
+                  Low
                 </option>
                 <option value='2' className={styles.option}>
-                  2
+                  Medium
                 </option>
                 <option value='3' className={styles.option}>
-                  3
+                  High
                 </option>
               </select>
             </p>
@@ -98,7 +105,7 @@ const ResourceCreate = () => {
               <input
                 className={styles.time}
                 type='time'
-                name='time'
+                name='timeToFinish'
                 value={form.timeToFinish}
                 onChange={handleChange}
                 required

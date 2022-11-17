@@ -19,7 +19,8 @@
 .label {
     font-size: 1.2rem;
     font-weight: bold;
-    margin-bottom: 0.4em;
+    margin-top: 0.2rem;
+    margin-bottom: 0.8em;
     margin-right: 0.8em;
 }
 
@@ -33,6 +34,7 @@
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
+    margin: 0 0 2rem 0;
 }
 
 .button:hover {
@@ -66,6 +68,7 @@
 }
 
 .form {
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,7 +98,7 @@
 }
 
 .select {
-    width: 3rem;
+    width: 6rem;
     height: 3rem;
     border: none;
     border-radius: 0.5rem;
