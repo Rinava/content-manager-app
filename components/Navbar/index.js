@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from './Navbar.module.scss';
+import styles from './styles.module.scss';
 import Image from 'next/image';
 import logo from '../../styles/assets/logo.svg';
 
@@ -21,17 +21,17 @@ const Navbar = () => {
       <ul className={styles.list}>
         <li>
           <Link href='/'>
-            <a>Home</a>
+            <a className={styles.link}>Home</a>
           </Link>
         </li>
         <li>
           <Link href='/resources/new'>
-            <a>Add</a>
+            <a className={styles.link}>Add</a>
           </Link>
         </li>
         <li>
           <Link href='/about'>
-            <a>About</a>
+            <a className={styles.link}>About</a>
           </Link>
         </li>
       </ul>

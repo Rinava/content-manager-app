@@ -1,25 +1,27 @@
-import Layout from '../../components/Layout/Layout';
-import styles from './new.module.scss';
+import Layout from './../../../components/Layout';
+import styles from './styles.module.scss';
 import { useState, useEffect } from 'react';
 
 const defaultForm = {
   title: '',
   description: '',
   link: '',
-  priority: '1',
+  priority: 'Low',
   timeToFinish: '00:20',
 };
 
 const ResourceCreate = () => {
-  const [form, setForm] = useState( defaultForm );
+  const [form, setForm] = useState(defaultForm);
 
   const submitForm = (e) => {
     e.preventDefault();
-    fetch("/api/resources", {
+    fetch('/api/resources', {
       body: JSON.stringify(form),
-      headers: {"Content-Type": "application/json"},
-      method: "POST"
-    }).then(response=> console.log(response?.data)).catch(error=>alert("Error during the creation of the resource"));
+      headers: { 'Content-Type': 'application/json' },
+      method: 'POST',
+    })
+      .then((response) => console.log(response?.data))
+      .catch((error) => alert('Error during the creation of the resource'));
   };
   // TODO when the response is ok show a message and clear the form, when the response is not ok show an error message
 
@@ -52,6 +54,7 @@ const ResourceCreate = () => {
             placeholder='Go to the gym'
             required
             autoFocus
+            maxLength={80}
             value={form.title}
             onChange={handleChange}
           />
@@ -63,10 +66,12 @@ const ResourceCreate = () => {
             name='description'
             placeholder='Do cardio'
             value={form.description}
+            maxLength={800}
             onChange={handleChange}></textarea>
           <label htmlFor='link' className={styles.label}>
             Link
           </label>
+          {/* TODO correct the validation for youtube */}
           <input
             className={styles.input}
             type='text'
@@ -87,13 +92,13 @@ const ResourceCreate = () => {
                 className={styles.select}
                 value={form.priority}
                 onChange={handleChange}>
-                <option value='1' className={styles.option} >
+                <option value='Low' className={styles.option}>
                   Low
                 </option>
-                <option value='2' className={styles.option}>
+                <option value='Medium' className={styles.option}>
                   Medium
                 </option>
-                <option value='3' className={styles.option}>
+                <option value='High' className={styles.option}>
                   High
                 </option>
               </select>
@@ -112,7 +117,6 @@ const ResourceCreate = () => {
               />
             </p>
           </div>
-
           <button type='submit' className={styles.button}>
             Save
           </button>

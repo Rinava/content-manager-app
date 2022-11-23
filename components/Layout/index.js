@@ -1,6 +1,7 @@
-import styles from './Layout.module.scss';
-import Navbar from '../Navbar/Navbar';
-import Footer from '../Footer/Footer';
+import styles from './styles.module.scss';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
+
 const Layout = ({ children }) => {
   return (
     <div className={styles.page}>
@@ -12,4 +13,5 @@ const Layout = ({ children }) => {
     </div>
   );
 };
+
 export default Layout;
