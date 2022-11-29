@@ -71,13 +71,12 @@ const ResourceCreate = () => {
           <label htmlFor='link' className={styles.label}>
             Link
           </label>
-          {/* TODO correct the validation for youtube */}
           <input
             className={styles.input}
             type='text'
             name='link'
             placeholder='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-            pattern='^(https?://)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$'
+            pattern='[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)'
             value={form.link}
             onChange={handleChange}
           />

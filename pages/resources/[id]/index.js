@@ -1,27 +1,26 @@
 import Layout from '../../../components/Layout';
 import styles from './styles.module.scss';
-const ResourceDetail = ({ resource }) => {
+import { useRouter } from 'next/router';
+import ResourceDetail from '../../../components/ResourceDetail';
+const ResourceDetailPage = ({ resource }) => {
+  const router = useRouter();
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
   return (
     <Layout>
-      <h2 className={styles.title}>{resource.title}</h2>
-      <div className={styles.container}>
-        <p className={styles.description}>{resource.description}</p>
-        <a
-          className={styles.link}
-          href={resource.link}
-          target='_blank'
-          rel='noreferrer'>
-          Link
-        </a>
-        <p className={styles.timeToFinish}>
-          Time to finish: {resource.timeToFinish}
-        </p>
-        <p className={styles.priority}> {resource.priority} priority</p>
-      </div>
+      <ResourceDetail resource={resource} />
     </Layout>
   );
 };
-
+export async function getStaticPaths() {
+  const response = await fetch('http://localhost:3001/api/resources');
+  const resources = await response.json();
+  const paths = resources.map((resource) => ({
+    params: { id: resource.id.toString() },
+  }));
+  return { paths, fallback: true };
+}
 
 export async function getStaticProps({ params }) {
   const response = await fetch(
@@ -32,7 +31,8 @@ export async function getStaticProps({ params }) {
     props: {
       resource: data,
     },
+    revalidate: 1,
   };
 }
 
-export default ResourceDetail;
+export default ResourceDetailPage;
