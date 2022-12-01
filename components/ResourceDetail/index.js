@@ -1,15 +1,13 @@
 import styles from './styles.module.scss';
+import ActionButtons from '../ActionButtons';
 const ResourceDetail = ({ resource }) => {
-  const { title, description, link, createdAt, timeToFinish, priority } =
+  const { id, title, description, link, createdAt, timeToFinish, priority } =
     resource;
   return (
     <div className={styles.resource_detail}>
       <div className={styles.resource}>
         <button className={styles.do}>Do it Now</button>
-        <div className={styles.buttons}>
-          <button className={styles.edit}>✏️</button>
-          <button className={styles.delete}>🗑️</button>
-        </div>
+        <ActionButtons id={id} />
         <time className={styles.creation_date}>{createdAt}</time>
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.priority}> {priority} priority</p>
@@ -24,7 +22,9 @@ const ResourceDetail = ({ resource }) => {
           </a>
         )}
         <p className={styles.time_finish}>
-          Time needed <span className={styles.time}>{timeToFinish} hours</span>
+          <span className={styles.time}>
+            {timeToFinish} hours estimated to finish
+          </span>
         </p>
       </div>
     </div>

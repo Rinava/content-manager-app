@@ -26,36 +26,7 @@
     margin: 0 auto;
     box-shadow: 4px 3px 5px 0px rgba(11, 98, 145, 0.75);
 }
-.buttons{
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    width: 100%;
-}
-.delete{
-    background-color: #f44336;
-    color: #fff;
-    height: 2rem;
-    width: 2rem;
-    font-weight: bold;
-    font-size: 1rem;
-    border: none;
-    border-radius: 1rem;
-    cursor: pointer;
-    box-shadow: 4px 3px 5px 0px rgba(11, 98, 145, 0.75);
-}
-.edit{
-    background-color: #ff9800;
-    color: #fff;
-    height: 2rem;
-    width: 2rem;
-    font-weight: bold;
-    font-size: 1rem;
-    border: none;
-    border-radius: 1rem;
-    cursor: pointer;
-    box-shadow: 4px 3px 5px 0px rgba(11, 98, 145, 0.75);
-}
+
 .creation_date {
     font-size: 0.8rem;
     margin: 0 0 0.8rem 0;
