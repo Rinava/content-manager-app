@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import SnackBar from '../SnackBar';
+import { useRouter } from 'next/router';
 import styles from './styles.module.scss';
+import SnackBar from '../SnackBar';
 
 const DEFAULT_FORM = {
   title: '',
@@ -11,6 +12,7 @@ const DEFAULT_FORM = {
 };
 
 const ResourceForm = ({ onSubmit, resourceToEdit }) => {
+  const router = useRouter();
   const [form, setForm] = useState(resourceToEdit || DEFAULT_FORM);
   const [showSnackBar, setShowSnackBar] = useState(false);
   const handleChange = (e) => {
@@ -23,7 +25,7 @@ const ResourceForm = ({ onSubmit, resourceToEdit }) => {
     onSubmit(form);
     setShowSnackBar(true);
     if (resourceToEdit) {
-      window.location.href = '/';
+      router.push('/');
     }
     setForm(DEFAULT_FORM);
   };

@@ -3,11 +3,22 @@ import ActionButtons from '../ActionButtons';
 const ResourceDetail = ({ resource }) => {
   const { id, title, description, link, createdAt, timeToFinish, priority } =
     resource;
+  const activeResource = () => {
+    fetch(`/api/resources`, {
+      headers: { 'Content-Type': 'application/json' },
+      method: 'PUT',
+      body: JSON.stringify({ ...resource, active: true }),
+    })
+  };
+  //TODO add .catch and .then to the fetch  with a message
+
   return (
     <div className={styles.resource_detail}>
       <div className={styles.resource}>
-        <button className={styles.do}>Do it Now</button>
-        <ActionButtons id={id} />
+        <button className={styles.do} onClick={activeResource}>
+          Do it Now
+        </button>
+        <ActionButtons id={id} redirect />
         <time className={styles.creation_date}>{createdAt}</time>
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.priority}> {priority} priority</p>

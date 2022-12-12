@@ -32,7 +32,6 @@ export default async function fetchData(req, res) {
   }
   if (req.method === 'DELETE') {
     const { id } = req.body;
-    console.log(id);
     try {
       const response = await fetch(
         `http://localhost:3001/api/resources/${id}`,

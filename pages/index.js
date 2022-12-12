@@ -1,23 +1,39 @@
-import ResourceHighlight from '../components/ResourceHighlight/ResourceHighlight';
+
 import Layout from '../components/Layout';
 import ResourcesSection from '../components/ResourcesSection';
+import ActiveResource from '../components/ActiveResource';
 
 export default function Home({ resources }) {
   return (
     <Layout>
-      <ResourceHighlight resources={resources.slice(0, 2)} />
-      <ResourcesSection resources={resources.slice(2)} />
+      {resources ? (
+        <>
+          <ActiveResource />
+          <ResourcesSection resources={resources} />
+        </>
+      ) : (
+        <h2>Please create a resource</h2>
+        // TODO make this a component
+      )}
     </Layout>
   );
 }
 
 export async function getServerSideProps() {
-  const resData = await fetch('http:/localhost:3001/api/resources');
-  const data = await resData.json();
+  try {
+    const resData = await fetch('http:/localhost:3001/api/resources');
+    const data = await resData.json();
 
-  return {
-    props: {
-      resources: data,
-    },
-  };
+    return {
+      props: {
+        resources: data,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        resources: null,
+      },
+    };
+  }
 }
