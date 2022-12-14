@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import ActionButtons from '../ActionButtons';
 import styles from './styles.module.scss';
-
+import ActionButtons from '../ActionButtons';
+import Timer from '../Timer';
 const ActiveResource = () => {
   const [activeResource, setActiveResource] = useState(null);
   const { id, title, description, link, timeToFinish } = activeResource || {};
@@ -23,9 +23,10 @@ const ActiveResource = () => {
     });
     setActiveResource(null);
   };
-  
+
   return (
     <>
+
       {activeResource && (
         <div className={styles.active_resource}>
           <button onClick={desactivateResource}>Cancel</button>
@@ -36,9 +37,8 @@ const ActiveResource = () => {
             <p>{description}</p>
             <a href={link}>{link}</a>
           </div>
-          <h3>Time Left</h3>
-          <p>{timeToFinish} hours</p>
-          <button>Reset</button>
+          <Timer time={timeToFinish} />
+
         </div>
       )}
     </>

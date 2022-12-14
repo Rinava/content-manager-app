@@ -1,14 +1,17 @@
 import styles from './styles.module.scss';
 import ActionButtons from '../ActionButtons';
+import { useRouter } from 'next/router';
 const ResourceDetail = ({ resource }) => {
   const { id, title, description, link, createdAt, timeToFinish, priority } =
     resource;
+  const router = useRouter();
   const activeResource = () => {
     fetch(`/api/resources`, {
       headers: { 'Content-Type': 'application/json' },
       method: 'PUT',
       body: JSON.stringify({ ...resource, active: true }),
     })
+    router.push('/');
   };
   //TODO add .catch and .then to the fetch  with a message
 
