@@ -1,5 +1,5 @@
 export default async function activeResource(req, res) {
-  const response = await fetch('http://localhost:3001/api/active-resource');
+  const response = await fetch(`${process.env.API_URL}/active-resource`);
   const data = await response.json();
   if (response.status === 200) {
     res.status(200).json(data);

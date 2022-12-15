@@ -1,4 +1,3 @@
-
 import Layout from '../components/Layout';
 import ResourcesSection from '../components/ResourcesSection';
 import ActiveResource from '../components/ActiveResource';
@@ -21,7 +20,7 @@ export default function Home({ resources }) {
 
 export async function getServerSideProps() {
   try {
-    const resData = await fetch('http:/localhost:3001/api/resources');
+    const resData = await fetch(`${process.env.API_URL}/resources`);
     const data = await resData.json();
 
     return {

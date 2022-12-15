@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import ActionButtons from '../ActionButtons';
+import DetailsLink from '../DetailsLink';
 import styles from './styles.module.scss';
 const Resources = ({ resources }) => {
   return (
@@ -13,10 +13,7 @@ const Resources = ({ resources }) => {
             <time className={styles.created_at}>{createdAt}</time>
             <h2 className={styles.title}>{title}</h2>
             {description && <p className={styles.description}>{description}</p>}
-            <Link href={`/resources/${id}`}>
-              <a className={styles.link}>See Details</a>
-            </Link>
-
+            <DetailsLink id={id} />
           </div>
         );
       })}

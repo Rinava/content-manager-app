@@ -1,11 +1,12 @@
+import { MoreTime } from '@mui/icons-material';
 import { useState, useEffect } from 'react';
-const Timer = ({ time }) => {
+const Timer = ({ time, setToDone}) => {
   const [timeLeft, setTimeLeft] = useState(timeToMiliseconds(time));
 
   useEffect(() => {
     if (timeLeft > 0) {
       const timer = setTimeout(() => {
-        setTimeLeft(timeLeft - 1);
+        setTimeLeft(timeLeft - 100);
       }, 1);
       return () => clearTimeout(timer);
     }
@@ -18,6 +19,7 @@ const Timer = ({ time }) => {
     return totalMiliseconds;
   }
   function milisecondsToTime(miliseconds) {
+    //TODO make it more readable and less repetitive
     const hours =
       Math.floor(miliseconds / 3600000) > 9
         ? Math.floor(miliseconds / 3600000)
@@ -36,6 +38,9 @@ const Timer = ({ time }) => {
   function resetTimer() {
     setTimeLeft(timeToMiliseconds(time));
   }
+  function giveMoreTime() {
+    setTimeLeft(timeLeft + 300000);
+  }
 
   return (
     <>
@@ -45,7 +50,11 @@ const Timer = ({ time }) => {
           <button onClick={resetTimer}>Reset</button>
         </div>
       ) : (
-        <h3>Time is up!</h3>
+        <div>
+          <h3>Time is up!</h3>
+          <button onClick={giveMoreTime}>5 more minutes</button>
+          <button onClick={setToDone}>Done</button>
+        </div>
       )}
     </>
   );

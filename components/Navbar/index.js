@@ -30,6 +30,11 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
+          <Link href='/resources/done'>
+            <a className={styles.link}>Done</a>
+          </Link>
+        </li>
+        <li>
           <Link href='/about'>
             <a className={styles.link}>About</a>
           </Link>

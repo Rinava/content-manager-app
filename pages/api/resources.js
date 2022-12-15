@@ -1,6 +1,8 @@
 export default async function fetchData(req, res) {
+  let apiUrl = `${process.env.API_URL}/resources`;
+
   if (req.method === 'GET') {
-    const response = await fetch('http://localhost:3001/api/resources');
+    const response = await fetch(apiUrl);
     const data = await response.json();
     res.status(200).json(data);
   }
@@ -10,12 +12,9 @@ export default async function fetchData(req, res) {
     if (!title || !timeToFinish || !priority) {
       return res.status(422).json({ message: 'Invalid input, data missing' });
     }
-    const url =
-      req.method === 'POST'
-        ? 'http://localhost:3001/api/resources'
-        : `http://localhost:3001/api/resources/${id}`;
+    apiUrl = req.method === 'PUT' && `${apiUrl}/${id}`;
     try {
-      const response = await fetch(url, {
+      const response = await fetch(apiUrl, {
         method: req.method.toUpperCase(),
         body: JSON.stringify(req.body),
         headers: {
@@ -33,12 +32,9 @@ export default async function fetchData(req, res) {
   if (req.method === 'DELETE') {
     const { id } = req.body;
     try {
-      const response = await fetch(
-        `http://localhost:3001/api/resources/${id}`,
-        {
-          method: 'DELETE',
-        }
-      );
+      const response = await fetch(apiUrl + `/${id} `, {
+        method: 'DELETE',
+      });
       const data = await response.json();
       res.status(200).json(data);
     } catch (error) {
