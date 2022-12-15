@@ -10,14 +10,11 @@ const Navbar = () => {
         <Link href='/'>
           <a className={styles.link}>
             <Image src={logo} alt='Landscape picture' className={styles.logo} />
-            Content Manager
+            Life Manager
           </a>
         </Link>
       </h1>
-      <div className={styles.search}>
-        <input type='search' />
-        <button>Search</button>
-      </div>
+
       <ul className={styles.list}>
         <li>
           <Link href='/'>

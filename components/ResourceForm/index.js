@@ -9,6 +9,7 @@ const DEFAULT_FORM = {
   link: '',
   priority: 'Low',
   timeToFinish: '00:20',
+  deadline: '',
 };
 
 const ResourceForm = ({ onSubmit, resourceToEdit }) => {
@@ -106,19 +107,32 @@ const ResourceForm = ({ onSubmit, resourceToEdit }) => {
               </select>
             </p>
             <p>
-              <label htmlFor='time' className={styles.label}>
-                Time to finish
+              <label htmlFor='datetime-local' className={styles.label}>
+                Deadline
               </label>
               <input
-                className={styles.time}
-                type='time'
-                name='timeToFinish'
-                value={form.timeToFinish}
+                className={styles.deadline}
+                type='datetime-local'
+                name='deadline'
+                value={form.deadline}
                 onChange={handleChange}
-                required
               />
             </p>
+            <p>
+            <label htmlFor='time' className={styles.label}>
+              Time to finish
+            </label>
+            <input
+              className={styles.time}
+              type='time'
+              name='timeToFinish'
+              value={form.timeToFinish}
+              onChange={handleChange}
+              required
+            />
+          </p>
           </div>
+
           <button type='submit' className={styles.button}>
             Save
           </button>

@@ -12,7 +12,7 @@ export default async function fetchData(req, res) {
     if (!title || !timeToFinish || !priority) {
       return res.status(422).json({ message: 'Invalid input, data missing' });
     }
-    apiUrl = req.method === 'PUT' && `${apiUrl}/${id}`;
+    apiUrl = req.method === 'POST' ? `${apiUrl}` : `${apiUrl}/${id}`;
     try {
       const response = await fetch(apiUrl, {
         method: req.method.toUpperCase(),

@@ -135,12 +135,19 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 4em;
-
+    gap: 1.4em;
 }
 
 .time {
-    width: 7em;
+    width: 7rem;
+    height: 3rem;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+.deadline {
+    width: 15rem;
     height: 3rem;
     border: none;
     border-radius: 0.5rem;
