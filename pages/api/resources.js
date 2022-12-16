@@ -21,6 +21,7 @@ export default async function fetchData(req, res) {
           'Content-Type': 'application/json',
         },
       });
+
       const data = await response.json();
       res.status(201).json(data);
     } catch (error) {

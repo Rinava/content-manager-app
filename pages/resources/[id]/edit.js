@@ -1,19 +1,26 @@
-import Layout from '../../../components/Layout';
 import ResourceForm from '../../../components/ResourceForm';
+import { useRouter } from 'next/router';
+import { ResourcesContext } from '../../../components/Layout';
+import { useContext } from 'react';
 const ResourceEditPage = ({ resource }) => {
-  const editResource = (formData) => {
-    fetch(`/api/resources/`, {
-      body: JSON.stringify(formData),
-      headers: { 'Content-Type': 'application/json' },
-      method: 'PUT',
-    });
+  const router = useRouter();
+  const { fetchResources } = useContext(ResourcesContext);
+  const editResource = async (formData) => {
+    try {
+      const updateResource = await fetch(`/api/resources/`, {
+        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },
+        method: 'PUT',
+      });
+      await updateResource.json();
+      fetchResources();
+      router.push('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  return (
-    <Layout>
-      <ResourceForm resourceToEdit={resource} onSubmit={editResource} />
-    </Layout>
-  );
+  return <ResourceForm resourceToEdit={resource} onSubmit={editResource} />;
 };
 
 export async function getServerSideProps({ params }) {

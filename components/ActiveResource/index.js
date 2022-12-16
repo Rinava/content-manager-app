@@ -9,8 +9,13 @@ const ActiveResource = () => {
   useEffect(() => {
     const fetchActiveResource = async () => {
       const response = await fetch('/api/active-resource');
-      const data = await response.json();
-      setActiveResource(data);
+
+      if (response.status === 204) {
+        setActiveResource(null);
+      } else {
+        const data = await response.json();
+        setActiveResource(data);
+      }
     };
     fetchActiveResource();
   }, []);

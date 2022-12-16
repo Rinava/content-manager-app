@@ -1,20 +1,31 @@
 import Layout from '../components/Layout';
 import ResourcesSection from '../components/ResourcesSection';
 import ActiveResource from '../components/ActiveResource';
+import { useContext, useEffect } from 'react';
+import { ResourcesContext } from '../components/Layout';
 
 export default function Home({ resources }) {
+  const { resources: ctxResources, fetchResources } =
+    useContext(ResourcesContext);
+
+  useEffect(() => {
+    if (!ctxResources) {
+      fetchResources(resources);
+    }
+  }, [ctxResources, fetchResources, resources]);
+
   return (
-    <Layout>
-      {resources ? (
+    <>
+      {ctxResources ? (
         <>
           <ActiveResource />
-          <ResourcesSection resources={resources} />
+          <ResourcesSection resources={ctxResources} />
         </>
       ) : (
         <h2>Please create a resource</h2>
-        // TODO make this a component
+        // TODO make this a component  and make this work
       )}
-    </Layout>
+    </>
   );
 }
 

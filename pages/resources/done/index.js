@@ -1,9 +1,8 @@
-import Layout from './../../../components/Layout';
 import ResourcesSection from './../../../components/ResourcesSection';
 import ActiveResource from './../../../components/ActiveResource';
 const ResourcesDone = ({ doneResources }) => {
   return (
-    <Layout>
+    <>
       {doneResources ? (
         <>
           <ActiveResource />
@@ -13,7 +12,7 @@ const ResourcesDone = ({ doneResources }) => {
       ) : (
         <h2>Please complete a Task first</h2>
       )}
-    </Layout>
+    </>
   );
 };
 

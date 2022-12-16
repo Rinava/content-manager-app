@@ -1,4 +1,3 @@
-import Layout from './../../../components/Layout';
 import styles from './styles.module.scss';
 import ResourceForm from '../../../components/ResourceForm';
 
@@ -13,11 +12,7 @@ const ResourceCreate = () => {
       .catch((error) => alert('Error during the creation of the resource'));
   };
 
-  return (
-    <Layout>
-      <ResourceForm onSubmit={createResource} />
-    </Layout>
-  );
+  return <ResourceForm onSubmit={createResource} />;
 };
 
 export default ResourceCreate;

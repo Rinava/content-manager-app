@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import styles from './styles.module.scss';
 import SnackBar from '../SnackBar';
 
@@ -13,7 +12,6 @@ const DEFAULT_FORM = {
 };
 
 const ResourceForm = ({ onSubmit, resourceToEdit }) => {
-  const router = useRouter();
   const [form, setForm] = useState(resourceToEdit || DEFAULT_FORM);
   const [showSnackBar, setShowSnackBar] = useState(false);
   const handleChange = (e) => {
@@ -25,9 +23,6 @@ const ResourceForm = ({ onSubmit, resourceToEdit }) => {
     e.preventDefault();
     onSubmit(form);
     setShowSnackBar(true);
-    if (resourceToEdit) {
-      router.push('/');
-    }
     setForm(DEFAULT_FORM);
   };
 

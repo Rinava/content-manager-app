@@ -1,8 +1,6 @@
-import Layout from '../components/Layout';
-
 function About() {
   return (
-    <Layout>
+    <>
       <h2>About</h2>
       <p>
         Introducing Life Manager - the ultimate app for managing your tasks and
@@ -13,7 +11,7 @@ function About() {
         to-do list, or just trying to stay organized, Life Manager has you
         covered.
       </p>
-    </Layout>
+    </>
   );
 }
 

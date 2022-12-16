@@ -1,11 +1,6 @@
-import Layout from '../../../components/Layout';
 import ResourceDetail from '../../../components/ResourceDetail';
 const ResourceDetailPage = ({ resource }) => {
-  return (
-    <Layout>
-      <ResourceDetail resource={resource} />
-    </Layout>
-  );
+  return <ResourceDetail resource={resource} />;
 };
 
 export async function getServerSideProps({ params }) {

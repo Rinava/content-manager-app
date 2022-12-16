@@ -1,9 +1,12 @@
 export default async function activeResource(req, res) {
-  const response = await fetch(`${process.env.API_URL}/active-resource`);
-  const data = await response.json();
-  if (response.status === 200) {
-    res.status(200).json(data);
-  } else {
-    res.status(response.status).json(data);
+  try {
+    const response = await fetch(`${process.env.API_URL}/active-resource`);
+    if (response.status === 204) {
+      res.status(204).json();
+    } else {
+      res.status(200).json(await response.json());
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Something went wrong during fetch' });
   }
 }
