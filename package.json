@@ -6,8 +6,8 @@
     "dev": "npx next dev",
     "build": "npx next build",
     "try": "npx next build &&  npx next start",
-    "start": " npx next start",
-    "lint": " npx next lint"
+    "start": "npx next start",
+    "lint": "npx next lint"
   },
   "dependencies": {
     "next": "^12.3.4",
