@@ -2,6 +2,7 @@ import styles from './styles.module.scss';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { createContext, useEffect, useState } from 'react';
+import { SessionProvider } from 'next-auth/react';
 
 export const ResourcesContext = createContext(null);
 
@@ -23,6 +24,7 @@ const Layout = ({ children }) => {
   };
 
   return (
+    <SessionProvider>
     <ResourcesContext.Provider value={{ resources, fetchResources }}>
       <div className={styles.page}>
         <Navbar />
@@ -30,6 +32,7 @@ const Layout = ({ children }) => {
         <Footer />
       </div>
     </ResourcesContext.Provider>
+    </SessionProvider>
   );
 };
 

@@ -12,6 +12,7 @@ const Timer = ({ time, setToDone}) => {
   }, [timeLeft]);
 
   function timeToMiliseconds(time) {
+    if (!time) return;
     const hours = time.slice(0, 2);
     const minutes = time.slice(3, 5);
     const totalMiliseconds = hours * 3600000 + minutes * 60000;
