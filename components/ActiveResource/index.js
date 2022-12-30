@@ -45,9 +45,13 @@ const ActiveResource = () => {
           <button onClick={desactivateResource}>Cancel</button>
           <h2 className={styles.title}>Active Resource</h2>
           <div className={styles.resource}>
-            <h3>{title}</h3>
-            <p>{description}</p>
-            <a href={link}>{link}</a>
+            <h3 className={styles.resource_title}>{title}</h3>
+            {description && <p className={styles.description}>{description}</p>}
+            {link && (
+              <a className={styles.link} href={link}>
+                {link}
+              </a>
+            )}
             <DetailsLink id={id} />
           </div>
           <Timer time={timeToFinish} setToDone={finishResource} />

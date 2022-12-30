@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
-const Timer = ({ time, setToDone}) => {
+import styles from './styles.module.scss';
+const Timer = ({ time, setToDone }) => {
   const [timeLeft, setTimeLeft] = useState(timeToMiliseconds(time));
 
   useEffect(() => {
     if (timeLeft > 0) {
       const timer = setTimeout(() => {
-        setTimeLeft(timeLeft - 100);
+        setTimeLeft(timeLeft - 1000);
       }, 1);
       return () => clearTimeout(timer);
     }
   }, [timeLeft]);
 
   function timeToMiliseconds(time) {
-    if (!time) return;
+    if (!time) return null;
     const hours = time.slice(0, 2);
     const minutes = time.slice(3, 5);
     const totalMiliseconds = hours * 3600000 + minutes * 60000;
@@ -41,19 +42,32 @@ const Timer = ({ time, setToDone}) => {
   function giveMoreTime() {
     setTimeLeft(timeLeft + 300000);
   }
+  // TODO make it consistent if you change the page and come back
 
   return (
     <>
       {timeLeft ? (
-        <div>
-          <h3>{milisecondsToTime(timeLeft)} time left</h3>
-          <button onClick={resetTimer}>Reset</button>
+        <div className={styles.timer}>
+          <h3 className={styles.time_left}>
+            {milisecondsToTime(timeLeft)} time left
+          </h3>
+          <button className={styles.reset_button} onClick={resetTimer}>
+            Reset
+          </button>
         </div>
       ) : (
-        <div>
-          <h3>Time is up!</h3>
-          <button onClick={giveMoreTime}>5 more minutes</button>
-          <button onClick={setToDone}>Done</button>
+        <div className={styles.background}>
+        <div className={styles.timer_done}>
+          <h3 className={styles.time}>Time is up!</h3>
+          <div className={styles.options}>
+            <button className={styles.more_time_button} onClick={giveMoreTime}>
+              5 more minutes
+            </button>
+            <button className={styles.done_button} onClick={setToDone}>
+              Done
+            </button>
+          </div>
+        </div>
         </div>
       )}
     </>

@@ -1,12 +1,10 @@
-import Layout from '../components/Layout';
+
 import ResourcesSection from '../components/ResourcesSection';
 import ActiveResource from '../components/ActiveResource';
 import { useContext, useEffect } from 'react';
 import { ResourcesContext } from '../components/Layout';
-import { useSession } from 'next-auth/react';
 
 export default function Home({ resources }) {
-  const { data: session } = useSession();
   const { resources: ctxResources, fetchResources } =
     useContext(ResourcesContext);
 
@@ -18,7 +16,6 @@ export default function Home({ resources }) {
 
   return (
     <>
-      {session ? <h2>Hello {session.user.name}!</h2> : <h2>Please sign in</h2>}
       {ctxResources ? (
         <>
           <ActiveResource />
