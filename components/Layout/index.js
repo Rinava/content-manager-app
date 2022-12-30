@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import { SessionProvider } from 'next-auth/react';
 
 export const ResourcesContext = createContext(null);
