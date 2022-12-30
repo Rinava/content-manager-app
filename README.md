@@ -1,6 +1,7 @@
 
 ## Life Manager
 Right now is not deployed on vercel because it's a project on progress.
+
 First, run the development server:
 
 ```bash
